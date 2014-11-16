@@ -1,0 +1,90 @@
+<!--
+-- Kanitkorn Sujautra
+-- BarCamp Bangkhen 5
+-- 16 Nov 2014
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>List Filter no JS (CSS3 only)</title>
+  <style>
+
+    .filter { text-align: center; }
+    .list-item { height: 50px; width: 100%; max-width: 640px; margin: 10px auto; transition: all .3s ease; }
+    .item-red { background: red; }
+    .item-blue { background: blue; }
+    .item-green { background: green; }
+    .item-round { border-radius: 2em; }
+    .item-oval { border-radius: 50%; }
+
+    .filter-color { margin-bottom: 10px; }
+    .filter-meta { display: none; }
+    .filter-label { border: 1px solid #000; padding: 2px 4px; position: relative; z-index: 2; }
+    .filter-label-none { position: absolute; z-index: 1; left: 46.5%; top: 31px; width: 140px; height: 22px; }
+
+
+    #ColorRed:checked ~ .list .item-red,
+    #ColorBlue:checked ~ .list .item-blue,
+    #ColorGreen:checked ~ .list .item-green { height: 50px; }
+
+    #ShapeRect:checked ~ .list .item-round,
+    #ShapeRect:checked ~ .list .item-oval,
+    #ShapeRound:checked ~ .list .item-rect,
+    #ShapeRound:checked ~ .list .item-oval,
+    #ShapeOval:checked ~ .list .item-round,
+    #ShapeOval:checked ~ .list .item-rect,
+    [id^=Color]:checked ~ .list .list-item { height: 0px; }
+
+    #ColorRed:checked ~ .filter-color [for=ColorRed],
+    #ColorBlue:checked ~ .filter-color [for=ColorBlue],
+    #ColorGreen:checked ~ .filter-color [for=ColorGreen],
+    #ShapeRect:checked ~ .filter-shape [for=ShapeRect],
+    #ShapeRound:checked ~ .filter-shape [for=ShapeRound],
+    #ShapeOval:checked ~ .filter-shape [for=ShapeOval] { background: pink; z-index: 0; }
+
+  </style>
+</head>
+<body>
+  <form class="filter">
+
+    <input type="checkbox" class="filter-meta" id="ColorRed">
+    <input type="checkbox" class="filter-meta" id="ColorBlue">
+    <input type="checkbox" class="filter-meta" id="ColorGreen">
+    <input type="radio" class="filter-meta" id="ShapeRect" name="shapes">
+    <input type="radio" class="filter-meta" id="ShapeRound" name="shapes">
+    <input type="radio" class="filter-meta" id="ShapeOval" name="shapes">
+    <input type="radio" class="filter-meta" id="ShapeNone" name="shapes" >
+
+    <div class="filter-color">
+      <span>Color: </span>
+      <label for="ColorRed" class="filter-label">Red</label>
+      <label for="ColorBlue" class="filter-label">Blue</label>
+      <label for="ColorGreen" class="filter-label">Green</label>
+    </div>
+
+    <div class="filter-shape">
+      <span>Shape: </span>
+      <label for="ShapeRect" class="filter-label">Rect</label>
+      <label for="ShapeRound" class="filter-label">Round</label>
+      <label for="ShapeOval" class="filter-label">Oval</label>
+      <label for="ShapeNone" class="filter-label-none"></label>
+    </div>
+
+    <div class="list">
+      <div class="list-item item-red item-rect"></div>
+      <div class="list-item item-blue item-round"></div>
+      <div class="list-item item-green item-oval"></div>
+      <div class="list-item item-red item-round"></div>
+      <div class="list-item item-blue item-oval"></div>
+      <div class="list-item item-green item-rect"></div>
+      <div class="list-item item-red item-oval"></div>
+      <div class="list-item item-blue item-rect"></div>
+      <div class="list-item item-green item-round"></div>
+    </div>
+    <button type="reset" class="filter-reset">Reset</button>
+  </form>
+
+</body>
+</html>
